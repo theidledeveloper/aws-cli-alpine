@@ -1,0 +1,58 @@
+name: Build image using alpine 3.17 nightly using latest v2
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+env:
+  ALPINE_VERSION: 3.17
+  DOCKER_USERNAME: theidledeveloper
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Container Details
+        id: container_detail
+        run: |
+          TAG=v2
+
+          # Use the repository name as the image name for simplicity
+          IMAGE_NAME="$(echo ${GITHUB_REPOSITORY} | cut -d: -f1)"
+          IMAGE_TAG="${TAG}-nightly"
+
+          TAGS="${IMAGE_NAME}:${IMAGE_TAG},${IMAGE_NAME}:${IMAGE_TAG}-alpine${ALPINE_VERSION}"
+
+          # Set output parameters.
+          echo ::set-output name=tags::${TAGS}
+          echo ::set-output name=aws_cli_version::${TAG}
+        env:
+          ALPINE_VERSION: ${{ env.ALPINE_VERSION }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: amd64,arm64
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ env.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PAT }}
+
+      - name: Build
+        uses: docker/build-push-action@v3
+        with:
+          build-args: |
+            ALPINE_VERSION=${{ env.ALPINE_VERSION }}
+            AWS_CLI_VERSION=${{ steps.container_detail.outputs.aws_cli_version }}
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.container_detail.outputs.tags }}
