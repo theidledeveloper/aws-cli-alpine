@@ -1,0 +1,18 @@
+name: Check for new release
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  check-tags:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.TOKEN }}
+    - name: Check for new tags
+      run: |
+        ./scripts/new_release_check.sh
+      env:
+        TOKEN: ${{ secrets.TOKEN }}
