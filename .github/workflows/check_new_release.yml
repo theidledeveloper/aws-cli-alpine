@@ -8,7 +8,7 @@ jobs:
   check-tags:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         token: ${{ secrets.TOKEN }}
     - name: Check for new tags
