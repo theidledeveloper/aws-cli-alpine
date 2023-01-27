@@ -10,6 +10,8 @@
 
 ![Latest tag](https://img.shields.io/github/v/tag/theidledeveloper/aws-cli-alpine?label=Latest%20Tag) ![License](https://img.shields.io/github/license/theidledeveloper/aws-cli-alpine)
 
+![Repository URL](https://github.com/theidledeveloper/aws-cli-alpine)
+
 ##### Build Status
 
 ![Release Check Build](https://img.shields.io/github/actions/workflow/status/theidledeveloper/aws-cli-alpine/check_new_release.yml?label=Release%20Check%20Build)
@@ -37,6 +39,15 @@ architectures.
 * [Alpine-3.17.0](https://alpinelinux.org/posts/Alpine-3.17.0-released.html) - latest
 * [Alpine-3.16.0](https://www.alpinelinux.org/posts/Alpine-3.16.0-released.html)
 * [Alpine-3.15.0](https://alpinelinux.org/posts/Alpine-3.15.0-released.html)
+
+To run the images against different platforms, use the `--platform` switch when evoking your container runtime:
+
+```bash
+# amd64
+docker run --platform linux/amd64 theidledeveloper/aws-cli-alpine:v2-nightly-alpine3.17 /bin/sh -c "aws --version"
+# arm64
+docker run --platform linux/arm64 theidledeveloper/aws-cli-alpine:v2-nightly-alpine3.17 /bin/sh -c "aws --version"
+```
 
 ### Release Versions
 
