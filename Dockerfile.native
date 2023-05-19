@@ -1,0 +1,9 @@
+ARG ALPINE_VERSION
+
+# Must be alpine 3.18+
+FROM alpine:${ALPINE_VERSION}
+
+ARG AWS_CLI_VERSION
+
+RUN apk add --update-cache --no-cache \
+    aws-cli~${AWS_CLI_VERSION}

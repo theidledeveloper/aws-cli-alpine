@@ -16,10 +16,12 @@
 
 ![Release Check Build](https://img.shields.io/github/actions/workflow/status/theidledeveloper/aws-cli-alpine/check_new_release.yml?label=Release%20Check%20Build)
 
+![Latest 3.18 Image Build](https://img.shields.io/github/actions/workflow/status/theidledeveloper/aws-cli-alpine/build_image_318.yml?label=Latest%203.18%20Image%20Build)
 ![Latest 3.17 Image Build](https://img.shields.io/github/actions/workflow/status/theidledeveloper/aws-cli-alpine/build_image_317.yml?label=Latest%203.17%20Image%20Build)
 ![Latest 3.16 Image Build](https://img.shields.io/github/actions/workflow/status/theidledeveloper/aws-cli-alpine/build_image_316.yml?label=Latest%203.16%20Image%20Build)
 ![Latest 3.15 Image Build](https://img.shields.io/github/actions/workflow/status/theidledeveloper/aws-cli-alpine/build_image_315.yml?label=Latest%203.15%20Image%20Build)
 
+![Nightly 3.18 Image Build](https://img.shields.io/github/actions/workflow/status/theidledeveloper/aws-cli-alpine/build_image_318_nightly.yml?label=Nightly%203.18%20Image%20Build)
 ![Nightly 3.17 Image Build](https://img.shields.io/github/actions/workflow/status/theidledeveloper/aws-cli-alpine/build_image_317_nightly.yml?label=Nightly%203.17%20Image%20Build)
 ![Nightly 3.16 Image Build](https://img.shields.io/github/actions/workflow/status/theidledeveloper/aws-cli-alpine/build_image_316_nightly.yml?label=Nightly%203.16%20Image%20Build)
 ![Nightly 3.15 Image Build](https://img.shields.io/github/actions/workflow/status/theidledeveloper/aws-cli-alpine/build_image_315_nightly.yml?label=Nightly%203.15%20Image%20Build)
@@ -36,17 +38,18 @@ A minimal alpine linux container with the aws cli using the tag source from
 Each image is created using one of the base Alpine releases (as seen below) and for both `amd/64` and `arm/64`
 architectures.
 
-* [Alpine-3.17.0](https://alpinelinux.org/posts/Alpine-3.17.0-released.html) - latest
-* [Alpine-3.16.0](https://www.alpinelinux.org/posts/Alpine-3.16.0-released.html)
+* [Alpine-3.18.0](https://alpinelinux.org/posts/Alpine-3.18.0-released.html) - latest
+* [Alpine-3.17.0](https://alpinelinux.org/posts/Alpine-3.17.0-released.html)
+* [Alpine-3.16.0](https://alpinelinux.org/posts/Alpine-3.16.0-released.html)
 * [Alpine-3.15.0](https://alpinelinux.org/posts/Alpine-3.15.0-released.html)
 
 To run the images against different platforms, use the `--platform` switch when evoking your container runtime:
 
 ```bash
 # amd64
-docker run --platform linux/amd64 theidledeveloper/aws-cli-alpine:v2-nightly-alpine3.17 /bin/sh -c "aws --version"
+docker run --platform linux/amd64 theidledeveloper/aws-cli-alpine:v2-nightly-alpine3.18 /bin/sh -c "aws --version"
 # arm64
-docker run --platform linux/arm64 theidledeveloper/aws-cli-alpine:v2-nightly-alpine3.17 /bin/sh -c "aws --version"
+docker run --platform linux/arm64 theidledeveloper/aws-cli-alpine:v2-nightly-alpine3.18 /bin/sh -c "aws --version"
 ```
 
 ### Release Versions
@@ -55,7 +58,8 @@ Versioned released are created when a new version is tagged in [aws/aws-cli/tags
 
 | Image Name  | Details |
 | ------------- | ------------- |
-| `theidledeveloper/aws-cli-alpine:2.x.x-alpine3.17` `theidledeveloper/aws-cli-alpine:2.x.x` | Specific version with an alpine 3.17 base operating system. This is also deemed *latest*. |
+| `theidledeveloper/aws-cli-alpine:2.x.x-alpine3.18` `theidledeveloper/aws-cli-alpine:2.x.x` | Specific version with an alpine 3.18 base operating system. This is also deemed *latest*. |
+| `theidledeveloper/aws-cli-alpine:2.x.x-alpine3.17` | Specific version with an alpine 3.17 base operating system |
 | `theidledeveloper/aws-cli-alpine:2.x.x-alpine3.16` | Specific version with an alpine 3.16 base operating system |
 | `theidledeveloper/aws-cli-alpine:2.x.x-alpine3.15`  | Specific version with an alpine 3.15 base operating system |
 
@@ -66,7 +70,8 @@ each alpine version listed below.
 
 | Image Name  | Details |
 | ------------- | ------------- |
-| `theidledeveloper/aws-cli-alpine:v2-nightly-alpine3.17` `theidledeveloper/aws-cli-alpine:v2-nightly` | ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/theidledeveloper/aws-cli-alpine/v2-nightly-alpine3.17) ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/theidledeveloper/aws-cli-alpine/v2-nightly) |
+| `theidledeveloper/aws-cli-alpine:v2-nightly-alpine3.18` `theidledeveloper/aws-cli-alpine:v2-nightly` | ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/theidledeveloper/aws-cli-alpine/v2-nightly-alpine3.18) ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/theidledeveloper/aws-cli-alpine/v2-nightly) |
+| `theidledeveloper/aws-cli-alpine:v2-nightly-alpine3.17` | ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/theidledeveloper/aws-cli-alpine/v2-nightly-alpine3.17) |
 | `theidledeveloper/aws-cli-alpine:v2-nightly-alpine3.16` | ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/theidledeveloper/aws-cli-alpine/v2-nightly-alpine3.16) |
 | `theidledeveloper/aws-cli-alpine:v2-nightly-alpine3.15`  | ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/theidledeveloper/aws-cli-alpine/v2-nightly-alpine3.15) |
 
@@ -79,10 +84,16 @@ different base image versions of aws-cli tags. To properly supply the image ARGs
 [python alpine](https://hub.docker.com/_/python) as this image is used to build the aws-cli from source. You can also
 find the available aws-cli tags [here](https://github.com/aws/aws-cli/tags).
 
+To build an alpine *3.18+* aws-cli version *2.11.20* use below:
+
+```bash
+docker build --build-arg ALPINE_VERSION=3.18 --build-arg AWS_CLI_VERSION=2.11.2 -t aws-cli-alpine:2.11.20 .
+```
+
 To build an alpine *3.17* aws-cli version *2.9.8* use below:
 
 ```bash
-docker build --build-arg ALPINE_VERSION=3.17 --build-arg AWS_CLI_VERSION=2.9.8 -t aws-cli-alpine:2.9.9 .
+docker build --build-arg ALPINE_VERSION=3.17 --build-arg AWS_CLI_VERSION=2.9.8 -t aws-cli-alpine:2.9.8 .
 ```
 
 ### Information

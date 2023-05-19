@@ -29,7 +29,7 @@ jobs:
           IMAGE_NAME="$(echo ${GITHUB_REPOSITORY} | cut -d: -f1)"
           IMAGE_TAG="${TAG}"
 
-          TAGS="${IMAGE_NAME}:${IMAGE_TAG},${IMAGE_NAME}:${IMAGE_TAG}-alpine${ALPINE_VERSION}"
+          TAGS="${IMAGE_NAME}:${IMAGE_TAG}-alpine${ALPINE_VERSION}"
 
           # Set output parameters.
           echo "tags=${TAGS}" >> $GITHUB_OUTPUT

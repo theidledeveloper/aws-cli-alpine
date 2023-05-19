@@ -1,12 +1,13 @@
-name: Build image using alpine 3.17 nightly using latest v2
+name: Build image using alpine 3.18 after tag creation
 
 on:
-  schedule:
-    - cron: "0 0 * * *"
+  push:
+    tags:
+      - '*'
   workflow_dispatch:
 
 env:
-  ALPINE_VERSION: 3.17
+  ALPINE_VERSION: 3.18
   DOCKER_USERNAME: theidledeveloper
 
 jobs:
@@ -18,13 +19,17 @@ jobs:
       - name: Container Details
         id: container_detail
         run: |
-          TAG=v2
+          if [ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]; then
+            TAG=$(git tag --sort=taggerdate | tail -1)
+          else
+            TAG=$(echo ${{ github.ref }} | cut -d/ -f3)
+          fi
 
           # Use the repository name as the image name for simplicity
           IMAGE_NAME="$(echo ${GITHUB_REPOSITORY} | cut -d: -f1)"
-          IMAGE_TAG="${TAG}-nightly"
+          IMAGE_TAG="${TAG}"
 
-          TAGS="${IMAGE_NAME}:${IMAGE_TAG}-alpine${ALPINE_VERSION}"
+          TAGS="${IMAGE_NAME}:${IMAGE_TAG},${IMAGE_NAME}:${IMAGE_TAG}-alpine${ALPINE_VERSION}"
 
           # Set output parameters.
           echo "tags=${TAGS}" >> $GITHUB_OUTPUT
@@ -53,6 +58,7 @@ jobs:
           build-args: |
             ALPINE_VERSION=${{ env.ALPINE_VERSION }}
             AWS_CLI_VERSION=${{ steps.container_detail.outputs.aws_cli_version }}
+          file: ./Dockerfile.native
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ steps.container_detail.outputs.tags }}
