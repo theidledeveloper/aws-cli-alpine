@@ -28,7 +28,7 @@ jobs:
 
           # Set output parameters.
           echo "tags=${TAGS}" >> $GITHUB_OUTPUT
-          echo "aws_cli_version=${TAG}" >> $GITHUB_OUTPUT
+          echo "aws_cli_version=2" >> $GITHUB_OUTPUT
         env:
           ALPINE_VERSION: ${{ env.ALPINE_VERSION }}
 
