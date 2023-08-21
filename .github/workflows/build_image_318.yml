@@ -3,7 +3,7 @@ name: Build image using alpine 3.18 after tag creation
 on:
   push:
     tags:
-      - '*'
+      - '*-r*'
   workflow_dispatch:
 
 env:

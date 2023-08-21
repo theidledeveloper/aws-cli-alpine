@@ -16,3 +16,6 @@ jobs:
         ./scripts/new_release_check.sh
       env:
         TOKEN: ${{ secrets.TOKEN }}
+    - name: Check for native package version
+      run: |
+        ./scripts/new_release_check_native.sh
