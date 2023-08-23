@@ -1,7 +1,6 @@
 ARG ALPINE_VERSION
 
-# Must use 3.10 otherwise we get ERROR: No matching distribution found for PyInstaller==5.3
-FROM python:3.10-alpine${ALPINE_VERSION} as builder
+FROM python:3.11-alpine${ALPINE_VERSION} as builder
 
 ARG AWS_CLI_VERSION
 
@@ -29,6 +28,7 @@ RUN find /usr/local/aws-cli/v2/current/dist/awscli/data -name completions-1*.jso
 RUN find /usr/local/aws-cli/v2/current/dist/awscli/botocore/data -name examples-1.json -delete
 
 FROM alpine:${ALPINE_VERSION}
+LABEL maintainer="theidledeveloper@gmail.com"
 
 COPY --from=builder /usr/local/aws-cli/ /usr/local/aws-cli/
 COPY --from=builder /aws-cli-bin/ /usr/local/bin/

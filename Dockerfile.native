@@ -2,6 +2,7 @@ ARG ALPINE_VERSION
 
 # Must be alpine 3.18+
 FROM alpine:${ALPINE_VERSION}
+LABEL maintainer="theidledeveloper@gmail.com"
 
 ARG AWS_CLI_VERSION
 
