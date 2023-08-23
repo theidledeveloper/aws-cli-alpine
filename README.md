@@ -16,15 +16,11 @@
 
 ![Release Check Build](https://img.shields.io/github/actions/workflow/status/theidledeveloper/aws-cli-alpine/check_new_release.yml?label=Release%20Check%20Build)
 
-![Latest 3.18 Image Build](https://img.shields.io/github/actions/workflow/status/theidledeveloper/aws-cli-alpine/build_image_318.yml?label=Latest%203.18%20Image%20Build)
-![Latest 3.17 Image Build](https://img.shields.io/github/actions/workflow/status/theidledeveloper/aws-cli-alpine/build_image_317.yml?label=Latest%203.17%20Image%20Build)
-![Latest 3.16 Image Build](https://img.shields.io/github/actions/workflow/status/theidledeveloper/aws-cli-alpine/build_image_316.yml?label=Latest%203.16%20Image%20Build)
-![Latest 3.15 Image Build](https://img.shields.io/github/actions/workflow/status/theidledeveloper/aws-cli-alpine/build_image_315.yml?label=Latest%203.15%20Image%20Build)
+![Latest Alpine Native Image Build](https://img.shields.io/github/actions/workflow/status/theidledeveloper/aws-cli-alpine/build_image_alpine_native.yml?label=Latest%20Alpine%20Native%20Image%20Build)
+![Latest Alpine Image Build](https://img.shields.io/github/actions/workflow/status/theidledeveloper/aws-cli-alpine/build_image_alpine.yml?label=Latest%20Alpine%20Image%20Build)
 
-![Nightly 3.18 Image Build](https://img.shields.io/github/actions/workflow/status/theidledeveloper/aws-cli-alpine/build_image_318_nightly.yml?label=Nightly%203.18%20Image%20Build)
-![Nightly 3.17 Image Build](https://img.shields.io/github/actions/workflow/status/theidledeveloper/aws-cli-alpine/build_image_317_nightly.yml?label=Nightly%203.17%20Image%20Build)
-![Nightly 3.16 Image Build](https://img.shields.io/github/actions/workflow/status/theidledeveloper/aws-cli-alpine/build_image_316_nightly.yml?label=Nightly%203.16%20Image%20Build)
-![Nightly 3.15 Image Build](https://img.shields.io/github/actions/workflow/status/theidledeveloper/aws-cli-alpine/build_image_315_nightly.yml?label=Nightly%203.15%20Image%20Build)
+![Nightly Alpine Native Image Build](https://img.shields.io/github/actions/workflow/status/theidledeveloper/aws-cli-alpine/build_image_alpine_nightly.yml?label=Nightly%20Alpine%20Native%20Image%20Build)
+![Nightly Alpine Image Build](https://img.shields.io/github/actions/workflow/status/theidledeveloper/aws-cli-alpine/build_image_alpine_nightly.yml?label=Nightly%20Alpine%20Image%20Build)
 
 A minimal alpine linux container with the aws cli using the tag source from
 [aws/aws-cli](https://github.com/aws/aws-cli).
