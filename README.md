@@ -10,7 +10,7 @@
 
 ![Latest tag](https://img.shields.io/github/v/tag/theidledeveloper/aws-cli-alpine?label=Latest%20Tag) ![License](https://img.shields.io/github/license/theidledeveloper/aws-cli-alpine)
 
-![Repository URL](https://github.com/theidledeveloper/aws-cli-alpine)
+[Repository URL](https://github.com/theidledeveloper/aws-cli-alpine)
 
 ##### Build Status
 
@@ -87,7 +87,7 @@ find the available aws-cli tags [here](https://github.com/aws/aws-cli/tags).
 To build an alpine *3.18+* aws-cli version *2.11.20* use below:
 
 ```bash
-docker build --build-arg ALPINE_VERSION=3.18 --build-arg AWS_CLI_VERSION=2.11.2 -t aws-cli-alpine:2.11.20 .
+docker build --build-arg ALPINE_VERSION=3.18 --build-arg AWS_CLI_VERSION=2.11.20 -t aws-cli-alpine:2.11.20 .
 ```
 
 To build an alpine *3.17* aws-cli version *2.9.8* use below:
