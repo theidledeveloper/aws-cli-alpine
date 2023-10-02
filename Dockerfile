@@ -5,15 +5,16 @@ FROM python:3.11-alpine${ALPINE_VERSION} as builder
 ARG AWS_CLI_VERSION
 
 RUN apk add --update-cache --no-cache \
-        git \
         unzip \
         groff \
         build-base \
         libffi-dev \
         cmake
-RUN git clone --single-branch --depth 1 -b ${AWS_CLI_VERSION} https://github.com/aws/aws-cli.git
 
-WORKDIR aws-cli
+WORKDIR /aws-cli
+
+RUN wget https://github.com/aws/aws-cli/archive/refs/tags/${AWS_CLI_VERSION}.tar.gz -qO- | \
+  tar -xz --strip-components=1 --exclude=.changes --exclude=.github --exclude=tests --exclude=proposals
 
 RUN python -m venv venv
 RUN . venv/bin/activate
