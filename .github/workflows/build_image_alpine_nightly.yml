@@ -53,6 +53,7 @@ jobs:
           build-args: |
             ALPINE_VERSION=${{ matrix.alpine_version }}
             AWS_CLI_VERSION=${{ steps.container_detail.outputs.aws_cli_version }}
+            REF_TYPE=heads
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true

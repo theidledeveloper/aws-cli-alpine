@@ -3,6 +3,7 @@ ARG ALPINE_VERSION
 FROM python:3.11-alpine${ALPINE_VERSION} as builder
 
 ARG AWS_CLI_VERSION
+ARG REF_TYPE=tags
 
 RUN apk add --update-cache --no-cache \
         unzip \
@@ -13,7 +14,7 @@ RUN apk add --update-cache --no-cache \
 
 WORKDIR /aws-cli
 
-RUN wget https://github.com/aws/aws-cli/archive/refs/tags/${AWS_CLI_VERSION}.tar.gz -qO- | \
+RUN wget https://github.com/aws/aws-cli/archive/refs/${REF_TYPE}/${AWS_CLI_VERSION}.tar.gz -qO- | \
   tar -xz --strip-components=1 --exclude=.changes --exclude=.github --exclude=tests --exclude=proposals
 
 RUN python -m venv venv
