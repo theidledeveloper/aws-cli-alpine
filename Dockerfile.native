@@ -7,4 +7,5 @@ LABEL maintainer="theidledeveloper@gmail.com"
 ARG AWS_CLI_VERSION
 
 RUN apk add --update-cache --no-cache \
+    --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community \
     aws-cli~${AWS_CLI_VERSION}
