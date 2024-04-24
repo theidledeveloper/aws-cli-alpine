@@ -21,7 +21,7 @@ jobs:
           if [ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]; then
             FULL_TAG=$(git tag --sort=taggerdate | tail -1)
           else
-            FULL_TAG="${{ github.ref }}"
+            FULL_TAG=$(echo ${{ github.ref }} | cut -d/ -f3)
           fi
 
           TAG=$(echo "${FULL_TAG}" | sed 's/^\(.*\)-[^-]*$/\1/')
