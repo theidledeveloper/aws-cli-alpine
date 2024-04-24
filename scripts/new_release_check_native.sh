@@ -1,15 +1,15 @@
 #!/bin/bash
 set -eu
 
-# PACKAGE TO CHECK FOR NEW RELEASES
-PACKAGE_NAME="aws-cli"
+# READ THE PACKAGE VERSION FROM THE FIRST ARGUMENT
+ALPINE_VERSION=${1:-3.19}  # Set default value to 3.19 if no argument is provided
 
 # GET THE PACKAGE INFO
-PACKAGE_INFO=$(wget -qO- https://pkgs.alpinelinux.org/package/edge/community/aarch64/aws-cli)
+PACKAGE_INFO=$(wget -qO- https://pkgs.alpinelinux.org/package/v${ALPINE_VERSION}/community/aarch64/aws-cli)
 # WE CARE ONLY FOR THE 'Build time'
 BUILD_DATE=$(echo "${PACKAGE_INFO}" | grep -A2 'Build time' | sed -n 's/.*<td>\(.*\)<\/td>.*/\1/p')
 # GET THE 'Version' AS WE USE IT FOR OUR OWN TAGS
-TAG_NAME=$(echo "${PACKAGE_INFO}" | grep -A3 'Version' | sed -n 's/.*>\(.*\)<\/a>.*/\1/p')
+TAG_NAME="$(echo "${PACKAGE_INFO}" | grep -A3 'Version' | tr '\n' ' ' | sed -n 's/.*<td[^>]*>\s*\([^<]*\)<\/td>.*/\1/p' | tr -d '[:space:]')-${ALPINE_VERSION}"
 # EXTRACT THE DATE OF THE BUILD AND MAKE IT A TIMESTAMP
 TIMESTAMP=$(echo "${BUILD_DATE}" | date -f - +%s)
 # GET THE CURRENT TIME

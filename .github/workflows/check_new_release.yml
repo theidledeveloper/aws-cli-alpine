@@ -16,6 +16,16 @@ jobs:
         ./scripts/new_release_check.sh
       env:
         TOKEN: ${{ secrets.TOKEN }}
+
+  check-native-tags:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        alpine_version: [3.18, 3.19]
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.TOKEN }}
     - name: Check for native package version
       run: |
-        ./scripts/new_release_check_native.sh
+        ./scripts/new_release_check_native.sh ${{ matrix.alpine_version }}
